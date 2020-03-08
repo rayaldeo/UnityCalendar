@@ -17,6 +17,7 @@ public class CalendarController : MonoBehaviour
     public Text _monthNumText;
 
     public GameObject _item;
+    public GameObject _dateItemParent;
 
     public List<GameObject> _dateItems = new List<GameObject>();
     const int _totalDateNum = 42;
@@ -26,6 +27,7 @@ public class CalendarController : MonoBehaviour
 
     public string selectedDate;
     string selectedDay;
+
 
     void Start()
     {
@@ -100,6 +102,7 @@ public class CalendarController : MonoBehaviour
         }
         _yearNumText.text = _dateTime.Year.ToString();
         _monthNumText.text = _dateTime.Month.ToString();
+        _dateItemParent.GetComponent<WeekCounter>().CalculateWeeks();
     }
 
     int GetDays(DayOfWeek day)

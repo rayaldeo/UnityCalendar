@@ -7,6 +7,8 @@ public class WeekCounter : MonoBehaviour
     GameObject[] dateItems;
     ArrayList weekOne, weekTwo, weekThree, weekFour, leftOverDays;
     bool weeksCalculated = false;
+    static readonly int MAXWEEKS = 4;
+    int desiredWeek = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,8 @@ public class WeekCounter : MonoBehaviour
 
     public void CalculateWeeks()
     {
+        UnHighlightWeek(desiredWeek);
+        desiredWeek = 0;
         ClearWeeks();
         this.GetNumberOfDaysInMonth();
         for (int i = 0; i < dateItems.Length; i++)
@@ -33,15 +37,15 @@ public class WeekCounter : MonoBehaviour
             {
                 weekOne.Add(dateItems[i]);
             }
-            else if(i > 7 && i <= 14)
+            else if(i >= 7 && i <= 14)
             {
                 weekTwo.Add(dateItems[i]);
             }
-            else if (i > 14 && i <= 21)
+            else if (i >= 14 && i <= 21)
             {
                 weekThree.Add(dateItems[i]);
             }
-            else if(i > 21 && i <= 28)
+            else if(i >= 21 && i <= 28)
             {
                 weekFour.Add(dateItems[i]);
             }
@@ -70,5 +74,75 @@ public class WeekCounter : MonoBehaviour
         weekThree.Clear();
         weekFour.Clear();
         leftOverDays.Clear();
+    }
+
+    public void HighlightWeek(int value)
+    {
+        ArrayList desiredWeek= new ArrayList();
+        switch(value)
+        {
+            case 4:
+                desiredWeek = weekFour;
+                break;
+            case 3:
+                desiredWeek = weekThree;
+                break;
+            case 2:
+                desiredWeek = weekTwo;
+                break;
+            default:
+                desiredWeek = weekOne;
+                break;
+        }
+        foreach(GameObject day in desiredWeek)
+        {
+            day.transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    public void UnHighlightWeek(int value)
+    {
+        ArrayList desiredWeek = new ArrayList();
+        switch (value)
+        {
+            case 4:
+                desiredWeek = weekFour;
+                break;
+            case 3:
+                desiredWeek = weekThree;
+                break;
+            case 2:
+                desiredWeek = weekTwo;
+                break;
+            default:
+                desiredWeek = weekOne;
+                break;
+        }
+        foreach (GameObject day in desiredWeek)
+        {
+            day.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    public void NextWeek()
+    {
+        Debug.Log("Next Week button clicked"+ desiredWeek);
+        if (desiredWeek< MAXWEEKS)
+        {
+            UnHighlightWeek(desiredWeek);
+            desiredWeek++;
+            HighlightWeek(desiredWeek);
+        }
+    }
+
+    public void PreviousWeek()
+    {
+        Debug.Log("Previous Week button clicked:"+ desiredWeek);
+        if (desiredWeek > 0)
+        {
+            UnHighlightWeek(desiredWeek);
+            desiredWeek--;
+            HighlightWeek(desiredWeek);
+        }
     }
 }

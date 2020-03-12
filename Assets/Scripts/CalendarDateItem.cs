@@ -13,8 +13,7 @@ public class CalendarDateItem : MonoBehaviour {
     {
         Debug.Log("Date button was clicked");
         AddEvent();
-        Debug.Log("Text Value for day is:"+ gameObject.GetComponentInChildren<Text>().text);
-        CalendarController._calendarInstance.OnDateItemClick(gameObject.GetComponentInChildren<Text>().text);
+        //CalendarController._calendarInstance.OnDateItemClick(gameObject.GetComponentInChildren<Text>().text);
     }
 
     private void AddEvent()

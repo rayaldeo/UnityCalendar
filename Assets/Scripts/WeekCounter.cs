@@ -10,14 +10,20 @@ public class WeekCounter : MonoBehaviour
     static readonly int MAXWEEKS = 4;
     int desiredWeek = 0;
 
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         weekOne = new ArrayList();
         weekTwo = new ArrayList();
         weekThree = new ArrayList();
         weekFour = new ArrayList();
         leftOverDays = new ArrayList();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+       
     }
 
     // Update is called once per frame
@@ -96,7 +102,7 @@ public class WeekCounter : MonoBehaviour
         }
         foreach(GameObject day in desiredWeek)
         {
-            day.transform.GetChild(0).gameObject.SetActive(true);
+            day.GetComponent<DateItemActivation>().Activate();
         }
     }
 
@@ -120,7 +126,7 @@ public class WeekCounter : MonoBehaviour
         }
         foreach (GameObject day in desiredWeek)
         {
-            day.transform.GetChild(0).gameObject.SetActive(false);
+            day.GetComponent<DateItemActivation>().DeActivate();
         }
     }
 

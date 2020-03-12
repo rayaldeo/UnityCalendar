@@ -6,11 +6,7 @@ using UnityEngine.UI;
 public class EventModule : MonoBehaviour
 {
 
-    public Text selectedDate;
-    public string dateValue;
-    public string dayValue;
-    CalendarController cc = new CalendarController();
-
+   CalendarController cc = new CalendarController();
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +17,6 @@ public class EventModule : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        selectedDate.text = cc.GetSelectedDate();
     }
 
     public void Disable()
@@ -38,7 +33,6 @@ public class EventModule : MonoBehaviour
     public void CreateEvent(string eventName, string year, string month,string day)
     {
         Event _event = new Event(eventName, year, month, day);
-        Debug.Log("This event got created:"+_event.ToString());
         EventRoster._eventRosterInstance.AddMyEvent(_event);
     }
 

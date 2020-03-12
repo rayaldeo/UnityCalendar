@@ -17,7 +17,7 @@ public class CalendarDateItem : MonoBehaviour {
         CalendarController._calendarInstance.OnDateItemClick(gameObject.GetComponentInChildren<Text>().text);
     }
 
-    public void AddEvent()
+    private void AddEvent()
     {
         eventModule.GetComponent<EventModule>().Enable();
     }

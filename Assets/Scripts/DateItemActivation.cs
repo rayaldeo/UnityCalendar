@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class DateItemActivation : MonoBehaviour
 {
+
+    public GameObject hightLightPanel;
+    public GameObject eventActiveIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +22,24 @@ public class DateItemActivation : MonoBehaviour
 
     public void Activate()
     {
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        this.hightLightPanel.SetActive(true);
         this.transform.GetComponent<Button>().enabled = (true);
     }
 
     public void DeActivate()
     {
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        this.hightLightPanel.SetActive(false);
         this.transform.GetComponent<Button>().enabled = (false);
+    }
+
+    public void ActivateEventIndicator()
+    {
+        this.eventActiveIndicator.SetActive(true);
+    }
+
+    public void Reset()
+    {
+        this.eventActiveIndicator.SetActive(false);
+        DeActivate();
     }
 }

@@ -9,15 +9,16 @@ public class EventRoster : MonoBehaviour
     public GameObject eventDetailText;
     public static EventRoster _eventRosterInstance = new EventRoster();
 
-    public void AddMyEvent(Event value)
+    public void AddMyEvent(Event _event)
     { 
-        myEvents.Add(value);
+        myEvents.Add(_event);
+        Debug.Log("This is the event name added:" + _event.ToString());
         Debug.Log("Event was added:" + GetSize());
         //ClearRoster();
         //ShowMyEvents();
     }
        
-    public static int GetSize()
+    public int GetSize()
     {
         return myEvents.Count;
     }
@@ -52,7 +53,23 @@ public class EventRoster : MonoBehaviour
 
     public bool Contains(Event _event)
     {
-        //foreach(Event eventObject in myEvents)
-        return true;
+        foreach(Event eventObject in myEvents)
+        {
+            if (eventObject.Equals(_event))
+                return true;
+        }
+        return false;
+    }
+
+    public void Remove(Event _event)
+    {
+        Debug.Log("Removing Event");
+        myEvents.Remove(_event);
+    }
+
+    public void RemoveAllEvents()
+    {
+        Debug.Log("Removing all Events");
+        myEvents.Clear();
     }
 }

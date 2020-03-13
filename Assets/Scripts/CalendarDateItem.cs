@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class CalendarDateItem : MonoBehaviour {
 
-    public GameObject titeBar;
-    public GameObject CalendarModule;
     public GameObject eventModule;
     public Text dateValue;
     Event _event;
@@ -14,7 +12,6 @@ public class CalendarDateItem : MonoBehaviour {
 
     public void OnDateItemClick()
     {
-        Debug.Log("Date button was clicked");
         AddEvent();
         //CalendarController._calendarInstance.OnDateItemClick(gameObject.GetComponentInChildren<Text>().text);
     }

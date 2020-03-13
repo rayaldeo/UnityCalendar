@@ -102,7 +102,8 @@ public class CalendarController : MonoBehaviour
         }
         _yearNumText.text = _dateTime.Year.ToString();
         _monthNumText.text = _dateTime.Month.ToString();
-        _dateItemParent.GetComponent<WeekCounter>().CalculateWeeks();
+        GetWeekCounter().CalculateWeeks();
+        GetWeekCounter().NextWeek();
     }
 
     int GetDays(DayOfWeek day)
@@ -135,12 +136,14 @@ public class CalendarController : MonoBehaviour
 
     public void MonthPrev()
     {
+        GetWeekCounter().ResetWeekGUI();
         _dateTime = _dateTime.AddMonths(-1);
         CreateCalendar();
     }
 
     public void MonthNext()
     {
+        GetWeekCounter().ResetWeekGUI();
         _dateTime = _dateTime.AddMonths(1);
         CreateCalendar();
     }

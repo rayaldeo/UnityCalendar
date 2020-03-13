@@ -33,8 +33,24 @@ public class EventModule : MonoBehaviour
     public void CreateEvent(string eventName, string year, string month,ArrayList days)
     {
         Event _event = new Event(eventName, year, month, days);
-        EventRoster._eventRosterInstance.AddMyEvent(_event);
-        Debug.Log("This is the event name added:" + _event.ToString());
+
+        if (EventRoster._eventRosterInstance.Contains(_event))
+        {
+            Debug.Log("This event is already scheduled for that week");
+            EventRoster._eventRosterInstance.Remove(_event);
+            EventRoster._eventRosterInstance.AddMyEvent(_event);
+        }
+        else if(EventRoster._eventRosterInstance.GetSize() < CalendarSceneController._sceneController.MAXWEEKSTOFIGHT)
+        {
+            EventRoster._eventRosterInstance.AddMyEvent(_event);
+            GetCalendarController().GetWeekCounter().ActivateEventIndicator();
+        }
+        else 
+        {
+            Debug.Log("Can't add any more weeks because you have used up all your weeks");
+        }
+
+         
     }
 
     public CalendarController GetCalendarController()

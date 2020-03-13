@@ -44,15 +44,15 @@ public class WeekCounter : MonoBehaviour
             {
                 weekOne.Add(dateItems[i]);
             }
-            else if(i >= 7 && i <= 14)
+            else if(i >= 7 && i < 14)
             {
                 weekTwo.Add(dateItems[i]);
             }
-            else if (i >= 14 && i <= 21)
+            else if (i >= 14 && i < 21)
             {
                 weekThree.Add(dateItems[i]);
             }
-            else if(i >= 21 && i <= 28)
+            else if(i >= 21 && i < 28)
             {
                 weekFour.Add(dateItems[i]);
             }
@@ -61,12 +61,6 @@ public class WeekCounter : MonoBehaviour
                 leftOverDays.Add(dateItems[i]);
             }
         }
-        Debug.Log("Week One Complete: " + weekOne.Count);
-        Debug.Log("Week Two Complete: " + weekTwo.Count);
-        Debug.Log("Week Three Complete: " + weekThree.Count);
-        Debug.Log("Week Four Complete: " + weekFour.Count);
-        Debug.Log("Left Over days: " + leftOverDays.Count);
-
     }
 
     void GetNumberOfDaysInMonth()
@@ -83,7 +77,7 @@ public class WeekCounter : MonoBehaviour
         leftOverDays.Clear();
     }
 
-    public void HighlightWeek(int value)
+    void HighlightWeek(int value)
     {
         switch(value)
         {
@@ -106,7 +100,7 @@ public class WeekCounter : MonoBehaviour
         }
     }
 
-    public void UnHighlightWeek(int value)
+    void UnHighlightWeek(int value)
     {
         switch (value)
         {
@@ -131,23 +125,37 @@ public class WeekCounter : MonoBehaviour
 
     public void NextWeek()
     {
-        Debug.Log("Next Week button clicked"+ desiredWeek);
+        UnHighlightWeek(desiredWeek);
         if (desiredWeek< MAXWEEKS)
         {
-            UnHighlightWeek(desiredWeek);
             desiredWeek++;
-            HighlightWeek(desiredWeek);
         }
+        else
+        {
+            desiredWeek=0;
+        }
+        HighlightWeek(desiredWeek);
     }
 
     public void PreviousWeek()
     {
-        Debug.Log("Previous Week button clicked:"+ desiredWeek);
+        UnHighlightWeek(desiredWeek);
         if (desiredWeek > 0)
         {
-            UnHighlightWeek(desiredWeek);
             desiredWeek--;
-            HighlightWeek(desiredWeek);
+        }
+        else
+        {
+            desiredWeek = 4;
+        }
+        HighlightWeek(desiredWeek);
+    }
+
+    public void ActivateEventIndicator()
+    {
+        foreach (GameObject day in selectedWeek)
+        {
+            day.GetComponent<DateItemActivation>().ActivateEventIndicator();
         }
     }
 
@@ -159,5 +167,15 @@ public class WeekCounter : MonoBehaviour
             arrayListOfDays.Add(day.GetComponent<CalendarDateItem>().GetValue());
         }
         return arrayListOfDays;
+    }
+
+    public void ResetWeekGUI()
+    {
+        this.GetNumberOfDaysInMonth();
+        for (int i = 0; i < dateItems.Length; i++)
+        {
+            dateItems[i].GetComponent<DateItemActivation>().Reset();
+        }
+        EventRoster._eventRosterInstance.RemoveAllEvents();
     }
 }

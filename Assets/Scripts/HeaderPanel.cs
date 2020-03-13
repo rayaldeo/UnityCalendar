@@ -9,6 +9,7 @@ public class HeaderPanel : MonoBehaviour
     public Slider currentStamina;
     public Text weeksToFight;
     public Text cash;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class HeaderPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SetWeeksToFight((CalendarSceneController._sceneController.MAXWEEKSTOFIGHT - EventRoster._eventRosterInstance.GetSize()).ToString());
     }
 
     void SetWeeksToFight(string text)

@@ -13,8 +13,8 @@ public class EventRoster : MonoBehaviour
     { 
         myEvents.Add(value);
         Debug.Log("Event was added:" + GetSize());
-        ClearRoster();
-        ShowMyEvents();
+        //ClearRoster();
+        //ShowMyEvents();
     }
        
     public static int GetSize()
@@ -48,5 +48,11 @@ public class EventRoster : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public bool Contains(Event _event)
+    {
+        //foreach(Event eventObject in myEvents)
+        return true;
     }
 }

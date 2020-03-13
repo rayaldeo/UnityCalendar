@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class CalendarDateItem : MonoBehaviour {
 
+    public GameObject titeBar;
+    public GameObject CalendarModule;
     public GameObject eventModule;
+    public Text dateValue;
     Event _event;
     string dayValue;
    
@@ -21,8 +24,18 @@ public class CalendarDateItem : MonoBehaviour {
         eventModule.GetComponent<EventModule>().Enable();
     }
 
+    private void DisAbleBackgroundObjects()
+    {
+
+    }
+
     public void Update()
     {
+    }
+
+    public string GetValue()
+    {
+        return dateValue.text;
     }
 
     

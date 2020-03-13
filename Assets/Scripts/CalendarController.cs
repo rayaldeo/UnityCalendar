@@ -181,4 +181,10 @@ public class CalendarController : MonoBehaviour
     {
         return this.selectedDay;
     }
+
+    public WeekCounter GetWeekCounter()
+    {
+        return _dateItemParent.GetComponent<WeekCounter>();
+    }
+
 }

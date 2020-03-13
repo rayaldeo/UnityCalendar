@@ -9,6 +9,7 @@ public class WeekCounter : MonoBehaviour
     bool weeksCalculated = false;
     static readonly int MAXWEEKS = 4;
     int desiredWeek = 0;
+    ArrayList selectedWeek = new ArrayList();
 
 
     void Awake()
@@ -84,23 +85,22 @@ public class WeekCounter : MonoBehaviour
 
     public void HighlightWeek(int value)
     {
-        ArrayList desiredWeek= new ArrayList();
         switch(value)
         {
             case 4:
-                desiredWeek = weekFour;
+                selectedWeek = weekFour;
                 break;
             case 3:
-                desiredWeek = weekThree;
+                selectedWeek = weekThree;
                 break;
             case 2:
-                desiredWeek = weekTwo;
+                selectedWeek = weekTwo;
                 break;
             default:
-                desiredWeek = weekOne;
+                selectedWeek = weekOne;
                 break;
         }
-        foreach(GameObject day in desiredWeek)
+        foreach(GameObject day in selectedWeek)
         {
             day.GetComponent<DateItemActivation>().Activate();
         }
@@ -108,23 +108,22 @@ public class WeekCounter : MonoBehaviour
 
     public void UnHighlightWeek(int value)
     {
-        ArrayList desiredWeek = new ArrayList();
         switch (value)
         {
             case 4:
-                desiredWeek = weekFour;
+                selectedWeek = weekFour;
                 break;
             case 3:
-                desiredWeek = weekThree;
+                selectedWeek = weekThree;
                 break;
             case 2:
-                desiredWeek = weekTwo;
+                selectedWeek = weekTwo;
                 break;
             default:
-                desiredWeek = weekOne;
+                selectedWeek = weekOne;
                 break;
         }
-        foreach (GameObject day in desiredWeek)
+        foreach (GameObject day in selectedWeek)
         {
             day.GetComponent<DateItemActivation>().DeActivate();
         }
@@ -150,5 +149,15 @@ public class WeekCounter : MonoBehaviour
             desiredWeek--;
             HighlightWeek(desiredWeek);
         }
+    }
+
+    public ArrayList GetSelectedWeek()
+    {
+        ArrayList arrayListOfDays = new ArrayList();
+        foreach(GameObject day in selectedWeek)
+        {
+            arrayListOfDays.Add(day.GetComponent<CalendarDateItem>().GetValue());
+        }
+        return arrayListOfDays;
     }
 }

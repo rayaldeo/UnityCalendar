@@ -25,9 +25,8 @@ public class HostedEventButton : MonoBehaviour
 
     public void CreateEvent()
     {
-        Debug.Log("This is the event name added:" + hostedEventName);
         eM = GameObject.Find("ChooseEventModule").GetComponent<EventModule>();
-        eM.CreateEvent(this.hostedEventName, eM.GetCalendarController().GetYear(), eM.GetCalendarController().GetMonth(), eM.GetCalendarController().GetSelectedDay());
+        eM.CreateEvent(this.hostedEventName, eM.GetCalendarController().GetYear(), eM.GetCalendarController().GetMonth(), eM.GetCalendarController().GetWeekCounter().GetSelectedWeek());
         eM.Disable();
     }
 }

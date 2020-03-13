@@ -30,10 +30,11 @@ public class EventModule : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    public void CreateEvent(string eventName, string year, string month,string day)
+    public void CreateEvent(string eventName, string year, string month,ArrayList days)
     {
-        Event _event = new Event(eventName, year, month, day);
+        Event _event = new Event(eventName, year, month, days);
         EventRoster._eventRosterInstance.AddMyEvent(_event);
+        Debug.Log("This is the event name added:" + _event.ToString());
     }
 
     public CalendarController GetCalendarController()

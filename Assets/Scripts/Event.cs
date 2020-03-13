@@ -5,16 +5,17 @@ using UnityEngine;
 public class Event : MonoBehaviour
 {
     string eventName;
-    string day, year, month;
+    string year, month;
+    ArrayList days;
 
     public Event() { }
 
-    public Event(string eventName, string year, string month,string day)
+    public Event(string eventName, string year, string month,ArrayList days)
     {
         this.eventName = eventName;
         this.year = year;
         this.month = month;
-        this.day = day;
+        this.days = days;
     }
 
     // Start is called before the first frame update
@@ -34,11 +35,6 @@ public class Event : MonoBehaviour
         return this.eventName;
     }
 
-    public override string ToString()
-    {
-        return this.eventName + " created on " + this.GetYear() + " " + this.GetMonth() + " " + this.GetDay();
-    }
-
     public void SetEventName(string value)
     {
         this.eventName = eventName;
@@ -54,10 +50,39 @@ public class Event : MonoBehaviour
         return this.month;
     }
 
-    public string GetDay()
+    public ArrayList GetDays()
     {
-        return this.day;
+        return this.days;
     }
+
+    public bool Equals(Event _event)
+    {
+        if (_event.GetDaysFromArray() == this.GetDaysFromArray() &&
+            _event.GetMonth() == this.GetMonth() &&
+            _event.GetYear() == this.GetYear())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    string GetDaysFromArray()
+    {
+        string days = "[";
+        foreach (string day in this.GetDays())
+        {
+            days += day + " ";
+        }
+        return days += "]";
+    }
+
+    #region Object Overrides
+    public override string ToString()
+    {
+       
+        return this.eventName + " created on " + this.GetYear() + " " + this.GetMonth() + " " + GetDaysFromArray();
+    }
+    #endregion
 
 
 }

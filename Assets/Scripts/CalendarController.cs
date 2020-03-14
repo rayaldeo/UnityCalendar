@@ -12,7 +12,6 @@ public class CalendarController : MonoBehaviour
     public int _desiredDay;
 
     public GameObject _calendarPanel;
-    public GameObject _eventPanel;
     public Text _yearNumText;
     public Text _monthNumText;
 
@@ -53,7 +52,6 @@ public class CalendarController : MonoBehaviour
         CreateCalendar();
 
         _calendarPanel.SetActive(false);
-        _eventPanel.SetActive(false);
     }
 
     void SetStartingDate()
@@ -151,7 +149,6 @@ public class CalendarController : MonoBehaviour
     public void ShowCalendar(Text target)
     {
         _calendarPanel.SetActive(true);
-        _eventPanel.SetActive(true);
         //_target = target;
         //_calendarPanel.transform.position = Input.mousePosition-new Vector3(0,120,0);
     }

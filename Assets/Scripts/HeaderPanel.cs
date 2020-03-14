@@ -14,13 +14,16 @@ public class HeaderPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         SetWeeksToFight((CalendarSceneController._sceneController.MAXWEEKSTOFIGHT - EventRoster._eventRosterInstance.GetSize()).ToString());
+        SetStaminaSlider(((float)CalendarSceneController._sceneController.MAXWEEKSTOFIGHT - (float)EventRoster._eventRosterInstance.GetSize()) / ((float)CalendarSceneController._sceneController.MAXWEEKSTOFIGHT));
+        Debug.Log(CalendarSceneController._sceneController.MAXWEEKSTOFIGHT + "" + EventRoster._eventRosterInstance.GetSize() 
+            + ""+ (CalendarSceneController._sceneController.MAXWEEKSTOFIGHT - EventRoster._eventRosterInstance.GetSize())
+            + "" + (((float)CalendarSceneController._sceneController.MAXWEEKSTOFIGHT - (float)EventRoster._eventRosterInstance.GetSize())/ (float)CalendarSceneController._sceneController.MAXWEEKSTOFIGHT));
     }
 
     void SetWeeksToFight(string text)
@@ -31,6 +34,12 @@ public class HeaderPanel : MonoBehaviour
     void SetCash(string text)
     {
         cash.text = text;
+    }
+
+    void SetStaminaSlider(float value)
+    {
+        Debug.Log("Value:" + value);
+        currentStamina.value = value;
     }
 
     

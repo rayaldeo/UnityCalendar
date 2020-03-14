@@ -5,9 +5,9 @@ using UnityEngine;
 public class CalendarSceneController : MonoBehaviour
 {
 
-    public readonly int MAXWEEKSTOFIGHT = 1;
+    public readonly int MAXWEEKSTOFIGHT = 4;
     public static CalendarSceneController _sceneController = new CalendarSceneController();
-
+    public readonly float MAXSLIDERVALUE = 1.0f;
 
     // Start is called before the first frame update
     void Start()

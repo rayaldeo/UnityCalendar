@@ -51,7 +51,7 @@ public class CalendarController : MonoBehaviour
         
         CreateCalendar();
 
-        _calendarPanel.SetActive(false);
+        //_calendarPanel.SetActive(false);
     }
 
     void SetStartingDate()

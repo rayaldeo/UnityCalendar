@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HostedEventButton : MonoBehaviour
 {
     public string hostedEventName;
-    public Text hostedEventField;
+    //public Text hostedEventField;
 
     EventModule eM = new EventModule();
 

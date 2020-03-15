@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HeaderPanel : MonoBehaviour
 {
 
-    public Slider currentStamina;
+    public Image currentStamina;
     public Text weeksToFight;
     public Text cash;
    
@@ -39,7 +39,7 @@ public class HeaderPanel : MonoBehaviour
     void SetStaminaSlider(float value)
     {
         Debug.Log("Value:" + value);
-        currentStamina.value = value;
+        currentStamina.fillAmount = value;
     }
 
     
